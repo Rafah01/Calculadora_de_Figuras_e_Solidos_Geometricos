@@ -177,6 +177,99 @@ public class GeometryCalculate{
             
     
     }
+    
+    //método responsável pelo Losango
+    public static void losango(){
+        
+         Scanner input = new Scanner(System.in);
+         
+         /*Um vetor unidimensional denominado info no qual consta as informações do losango. A primeira posição do vetor indica o lado do losango, 
+         a segunda posição indica o ângulo agudo do losango, o qual é cortado simetricamente pela diagonal maior, a terceira posição 
+         indica o Ângulo obtuso do losango, que é cortado simetricamente pela diagonal menor do losango*/
+         double[] info=new double[3];
+         
+        // variável booleana que decide se a entrada é válida ou não
+        boolean entrada_invalida;
+        
+        System.out.println("\nOlá, a opção escolhida foi o Losango. Informe o lado dele (em m)");
+            info[0]=input.nextDouble();
+        
+            do{
+            
+                System.out.println("\nInforme o ângulo obtuso (em graus) do Losango que é cortado pela diagonal menor do Losango.\nO ângulo deve ser maior que 90º e mnor que 180º.\n");
+                info[1]=input.nextDouble();
+                
+                //A estrutura de decisão confirmará se o Ângulo digitado pelo usuário é valido, se não, pedirá que digite-o novamente
+                if(info[1]>90 && info[1]<180){
+                    
+                    entrada_invalida=false;
+                }
+                
+                else{
+                
+                    entrada_invalida=true;
+                    System.out.println("\nInforme um ângulo válido!");
+                }
+            
+            }
+            while(entrada_invalida);
+           
+            
+            //O ângulo agudo do Losango será calculado a partir do ângulo obtuso digitado pelo usuário, como os ângulos são suplementares, sua soma é igual a 180º
+            info[2]=180-info[1];
+            
+            
+            //instaciando o objeto Losango
+            
+            Losango losango= new Losango();
+            
+            
+            System.out.printf("\nO perímetro do Losango é: %.2f m\nA área é: %.2f m²\nA diagonal maior é: %.2f m\nA diagonal menor é: %.2f m\n",losango.perimetro(info[0]),losango.area(info[0],info[1],info[2]),losango.diagonal_maior(info[0],info[1]),losango.diagonal_menor(info[0],info[2]));
+    
+    }
+    
+
+    //método responsável pelo pentágono
+    public static void pentagono(){
+    
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("\nOlá, a opção escolhida foi o Pentágono. Informe o lado dele (em m)");
+            double lado=input.nextDouble();
+           
+       // Instaciando o objeto pentágono
+       
+       Pentagono pentagono= new Pentagono();
+       
+       //saída de dados
+       
+       System.out.printf("\nÁrea do pentagono: %.2f m²\nPerímetro: %.2f m\nApótema: %.2f m",pentagono.area(lado),pentagono.perimetro(lado),pentagono.apotema(lado));
+       
+    
+    
+    }
+    
+    //método responsável pelo hexágono
+    public static void hexagono(){
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("\nOlá, a opção escolhida foi o Hexágono. Informe o lado dele (em m)");
+            double lado=input.nextDouble();
+           
+        //instanciando o objeto hexágono
+        
+        Hexagono hexagono= new Hexagono();
+        
+          
+       //saída de dados
+       
+       System.out.printf("\nÁrea do pentagono: %.2f m²\nPerímetro: %.2f m\nApótema: %.2f m",hexagono.area(lado),hexagono.perimetro(lado),hexagono.apotema(lado));
+       
+    
+    
+    
+    }
 
     // método responsável pelo Cilindro:
     public static void cilindro(){
@@ -237,7 +330,7 @@ public class GeometryCalculate{
         Scanner input= new Scanner(System.in);
         int decisao;
         //Meno com opções das figuras e sólidos geométricos
-        System.out.println("\nEscolha qual figura geométrica plana ou sólidos geométricos  você deseja calcular abaixo:\n\n\n\n\nFiguras Geométricas:\n\n1-Triângulo\n2-Retângulo ou quadrado\n3-Círculo\n4.Trapézio\n\n\nSólidos Geométricos:\n\n\n5.Cilindro\n6.Esfera\n\n\nDigite o número que deseja: ");
+        System.out.println("\nEscolha qual figura geométrica plana ou sólidos geométricos  você deseja calcular abaixo:\n\n\n\n\nFiguras Geométricas:\n\n1-Triângulo\n2-Retângulo ou quadrado\n3-Círculo\n4.Trapézio\n5.Losango\n6.Pentágono Regular Convexo\n7.Hexágono Regular Convexo\n\n\nSólidos Geométricos:\n\n\n8.Cilindro\n9.Esfera\n\n\nDigite o número que deseja: ");
         decisao=input.nextInt();
     
         return decisao;
@@ -303,14 +396,29 @@ public class GeometryCalculate{
                     
                     trapezio(); // chamada ao procedimento Trapezio
                     break;
+                
+                case 5: // Opção Losango
                     
-                case 5: //Volume, área da face de um cilindro
+                    losango();
+                    break;
+                    
+                case 6: // Opção Pentágono
+                    
+                    pentagono();
+                    break;
+                
+                case 7: // Opção Hexágono
+                    
+                    hexagono();
+                    
+                    break;
+                case 8: //Volume, área da face de um cilindro
                     
                     cilindro(); // chamada ao prodecimento cilindro
                     
                     break;
                     
-                case 6: // Volume e área superficial de uma esfera
+                case 9: // Volume e área superficial de uma esfera
                     
                     esfera(); // chamada ao prodecimento esfera
                     break;

@@ -10,4 +10,14 @@ package com.mycompany.geoemetrycalculate;
  */
 public class Piramide {
     
+    //atributos da classe pirâmide
+    
+    
+    private double altura,largura,comrpimento;
+    
+    
+    // métodos
+    
+    
+    
 }
